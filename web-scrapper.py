@@ -54,7 +54,7 @@ class Scrapper:
         if leaderboard_table is not None:
             for tr in leaderboard_table.find_all('tr'):
                 for th in tr.find_all('th'):
-                    fields.append(th.text)
+                    fields.append(' '.join(th.text.split()))
 
             for tr in leaderboard_table.find_all('tr'):
                 datum = {}

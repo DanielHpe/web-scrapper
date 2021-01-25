@@ -1,3 +1,5 @@
 UGM https://umggaming.com/leaderboards
 ATP https://www.espn.com.br/tenis/rankings/_/temporada/2020
 MBA http://rankings.ft.com/businessschoolrankings/online-mba-ranking-2017
+CS https://csgo-stats.com/top
+CODES https://countrycode.org/

@@ -1,3 +1,5 @@
 UGM: use [python web-scrapper.py UGM id leaderboard-table] (BRINGS GAME LEADERBOARD)
 ATP: use [python web-scrapper.py ATP class Table--align-right] (BRINGS ATP RANKING)
 MBA: use [python web-scrapper.py MBA id rankingstable] (BRINGS MBA COLLEGE LIST)
+CS:  use [python web-scrapper.py CS id table-top-players] (BRINGS COUNTER STRIKE LEADERBOARD)
+CODES: use [python web-scrapper.py CODES class main-table] (BRINGS COUNTRIES PHONE CODES LIST)
