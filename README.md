@@ -1,4 +1,4 @@
-PYTHON APPLICATION
+PYTHON APPLICATION TO FETCH DATA FROM WEBSITES
 
 - Fetch data from several tables (rankings, leaderboards and etc) | URLs: websites.txt
 - Retrieves data such as ranking, team, trophees and orders
