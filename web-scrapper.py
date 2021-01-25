@@ -16,6 +16,8 @@ class Scrapper:
         return file_url
         
     def read(self, folder, file):
+        if not os.path.exists(folder):
+            os.makedirs(folder)
         try:
             with open(folder + '\\' + file,'r') as f:
                 return f.read()
@@ -23,6 +25,8 @@ class Scrapper:
             return None   
         
     def write(self, folder, file, data):
+        if not os.path.exists(folder):
+            os.makedirs(folder)
         try:
             with open(folder + '\\' + file, 'w') as f:
                 return f.write(data)
