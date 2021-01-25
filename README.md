@@ -1,6 +1,6 @@
 PYTHON APPLICATION
 
-- Fetch data from UMG Gaming Leaderboard website | URLs: websites.txt
+- Fetch data from several tables (rankings, leaderboards and etc) | URLs: websites.txt
 - Retrieves data such as ranking, team, trophees and orders
 - Scrapper Class reads URLs from websites.txt using REGEX
 - Add website in file with " " separation and just pass the attributes to script
