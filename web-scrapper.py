@@ -11,20 +11,20 @@ class Scrapper:
         return str(pathlib.Path(__file__).parent.absolute())
         
     def get_urL(self, pattern):
-        file_data = self.read('websites.txt')
+        file_data = self.read(self.get_current_path(), 'websites.txt')
         file_url = re.search(pattern, file_data).group(1).strip()
         return file_url
         
-    def read(self, file):
+    def read(self, folder, file):
         try:
-            with open(self.get_current_path() + '\\' + file,'r') as f:
+            with open(folder + '\\' + file,'r') as f:
                 return f.read()
         except:
             return None   
         
-    def write(self, file, data):
+    def write(self, folder, file, data):
         try:
-            with open(self.get_current_path() + '\\' + file, 'w') as f:
+            with open(folder + '\\' + file, 'w') as f:
                 return f.write(data)
         except:
             return None   
@@ -70,26 +70,26 @@ class Scrapper:
 scrapper = Scrapper()
 table_data = []
 
-url_ref = sys.argv[1]
+scripts_text = scrapper.read(scrapper.get_current_path(), 'script_list.txt')
 
-if url_ref not in scrapper.read('websites.txt'):
-    table_data.append({'message': 'NENHUM ARGUMENTO PASSADO DE UMA URL VALIDA DE "WEBSITES.TXT"'})
-    json_data = scrapper.json_converter(table_data)
-    scrapper.write('extracted_data.json', json_data)
-    exit()
-
-url = scrapper.get_urL(f'(?<={url_ref})(.*)')
-get_data = scrapper.get(url)
-
-if get_data is not None:   
-    soup = scrapper.init_BS(get_data)
-    html_element = sys.argv[2]
-    html_value = sys.argv[3]
-    table_data =  scrapper.table_scrapper(soup, html_element, html_value)
-    json_data = scrapper.json_converter(table_data)
-    scrapper.write('extracted_data.json', json_data)
-    exit()
+for line in scripts_text.split('\n'):
+    script_line = re.search(r'(?<=\[)(.*)(?=])', line).group(1).strip()
+    script_ref = script_line.split(" ")[0].strip()
+    script_name = script_line.split(" ")[1].strip()
+    script_key = script_line.split(" ")[2].strip()
+    script_element = script_line.split(" ")[3].strip()
+    script_value = script_line.split(" ")[4].strip()
+    output_file = f'extracted_data_{script_key}.json'
     
-table_data.append({'message': 'URL INVÁLIDA OU STATUS CODE DO REQUEST DIFERENTE DE 200 (SUCESSO)'})
-json_data = scrapper.json_converter(table_data)
-scrapper.write('extracted_data.json', json_data)
+    url = scrapper.get_urL(f'(?<={script_key})(.*)')
+    get_data = scrapper.get(url)
+
+    if get_data is not None:   
+        soup = scrapper.init_BS(get_data)
+        table_data =  scrapper.table_scrapper(soup, script_element, script_value)
+        json_data = scrapper.json_converter(table_data)
+        scrapper.write(scrapper.get_current_path() + '\\outputs', output_file, json_data)
+    else:
+        table_data.append({'message': 'URL INVÁLIDA OU STATUS CODE DO REQUEST DIFERENTE DE 200 (SUCESSO)'})
+        json_data = scrapper.json_converter(table_data)
+        scrapper.write(scrapper.get_current_path() + '\\outputs', output_file, json_data)
