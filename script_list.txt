@@ -1,0 +1,2 @@
+UGM: use "python web-scrapper.py UGM id leaderboard-table" (BRINGS GAME LEADERBOARD)
+ATP: use "python web-scrapper.py ATP class Table--align-right" (BRINGS ATP RANKING)
