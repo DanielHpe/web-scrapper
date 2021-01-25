@@ -9,3 +9,4 @@ PYTHON APPLICATION TO FETCH DATA FROM WEBSITES
 - The SCRAPPER parses only table elements to demonstration
 - Use of library such as beautiful soup to html parsing and request to http requests
 - RUN: To run the app, just run the "run_scrapper.bat" as admin (WINDOWS)
+- TESTS: Execution time: 20s (4s to scrap each site as average)
