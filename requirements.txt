@@ -1,5 +1,0 @@
-logging
-requests
-bs4
-json
-pathlib
