@@ -71,6 +71,7 @@ class Scrapper:
     def json_converter(self, table_list):
         return json.dumps(table_list, indent=4)   
      
+def main():
 scrapper = Scrapper()
 table_data = []
 
@@ -78,8 +79,8 @@ scripts_text = scrapper.read(scrapper.get_current_path(), 'script_list.txt')
 
 for line in scripts_text.split('\n'):
     script_line = re.search(r'(?<=\[)(.*)(?=])', line).group(1).strip()
-    script_ref = script_line.split(" ")[0].strip()
-    script_name = script_line.split(" ")[1].strip()
+        # script_ref = script_line.split(" ")[0].strip()
+        # script_name = script_line.split(" ")[1].strip()
     script_key = script_line.split(" ")[2].strip()
     script_element = script_line.split(" ")[3].strip()
     script_value = script_line.split(" ")[4].strip()
@@ -97,3 +98,5 @@ for line in scripts_text.split('\n'):
         table_data.append({'message': 'URL INVÁLIDA OU STATUS CODE DO REQUEST DIFERENTE DE 200 (SUCESSO)'})
         json_data = scrapper.json_converter(table_data)
         scrapper.write(scrapper.get_current_path() + '\\outputs', output_file, json_data)
+
+main()
