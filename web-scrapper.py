@@ -78,8 +78,6 @@ def main():
 
     for line in scripts_text.split('\n'):
         script_line = re.search(r'(?<=\[)(.*)(?=])', line).group(1).strip()
-        # script_ref = script_line.split(" ")[0].strip()
-        # script_name = script_line.split(" ")[1].strip()
         script_key = script_line.split(" ")[2].strip()
         script_element = script_line.split(" ")[3].strip()
         script_value = script_line.split(" ")[4].strip()
@@ -87,7 +85,7 @@ def main():
         
         url = scrapper.get_urL(f'(?<={script_key})(.*)')
         get_data = scrapper.get(url)
-        
+
         if get_data is not None:   
             soup = scrapper.init_BS(get_data)
             table_data =  scrapper.table_scrapper(soup, script_element, script_value)
